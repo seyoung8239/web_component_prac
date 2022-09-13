@@ -4,6 +4,7 @@ export default class Component {
     constructor($target) {
         this.$target = $target;
         this.setUp();
+        this.setEvent();
         this.render();
     }
 
@@ -11,7 +12,7 @@ export default class Component {
 
     render() {
         this.$target.innerHTML = this.template();
-        this.setEvent();
+        
     }
 
     setState(newState) {
