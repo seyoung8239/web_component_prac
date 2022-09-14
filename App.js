@@ -6,17 +6,14 @@ export default class App extends Component {
     }
     template() {
         const { name, age } = this.state;
-        return `<div><p>name:${name}</p><p>${age}</p><button id='prev-btn'>prev year</button><button id='next-btn'>next year</button></div>`;
+        return `<div><p>name:${name}</p><p>${age}</p><button class='prev-btn'>prev year</button><button class='next-btn'>next year</button></div>`;
     }
     setEvent() {
-        console.log(this.$target);
-        this.$target.addEventListener("click", (e) => {
-            if (e.target.id === "prev-btn") {
-                this.setState({ age: this.state.age - 1 });
-            }
-            if (e.target.id === "next-btn") {
-                this.setState({ age: this.state.age + 1 });
-            }
+        this.addEvent("click", ".prev-btn", (e) => {
+            this.setState({ age: this.state.age - 1 });
+        });
+        this.addEvent("click", ".next-btn", (e) => {
+            this.setState({ age: this.state.age + 1 });
         });
     }
 }

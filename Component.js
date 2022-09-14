@@ -4,15 +4,15 @@ export default class Component {
     constructor($target) {
         this.$target = $target;
         this.setUp();
-        this.setEvent();
         this.render();
+        this.setEvent();
     }
 
     setUp() {}
 
     render() {
         this.$target.innerHTML = this.template();
-        
+        console.log("rendered");
     }
 
     setState(newState) {
@@ -24,5 +24,15 @@ export default class Component {
 
     template() {
         return;
+    }
+
+    addEvent(eventType, selector, callback) {
+        const children = [...this.$target.querySelectorAll(selector)];
+        const isTarget = (target) =>
+            children.includes(target) || target.closest(selector);
+        this.$target.addEventListener(eventType, (e) => {
+            if (!isTarget(e.target)) return false;
+            callback(e);
+        });
     }
 }
